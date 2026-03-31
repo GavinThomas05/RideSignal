@@ -32,7 +32,7 @@
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             app:cornerRadius="8dp"
-            app:icon="@drawable/ic_person_add"
+            app:icon="@drawable/ic_add_friend"
             app:layout_constraintBottom_toBottomOf="@id/tvFriendsHeader"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvFriendsHeader" />
