@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121B2B">
+
+    <!-- Header Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvSignalTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Signal Pad"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunday Riders"
+            android:textColor="#A0AEC0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSignalTitle" />
+
+        <ImageButton
+            android:id="@+id/btnOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_more_vert"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#A0AEC0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Scrollable Grid of Buttons -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:alignmentMode="alignMargins"
+            android:columnCount="2">
+
+            <!-- 1. STOP -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/SignalCardStyle"
+                app:cardBackgroundColor="#EF4444">
+                <LinearLayout style="@style/SignalContentStyle">
+                    <TextView style="@style/SignalTextStyle" android:text="Stop" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 2. SLOW DOWN -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/SignalCardStyle"
+                app:cardBackgroundColor="#F59E0B">
+                <LinearLayout style="@style/SignalContentStyle">
+                    <TextView style="@style/SignalTextStyle" android:text="Slow Down" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 3. SPEED UP -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/SignalCardStyle"
+                app:cardBackgroundColor="#10B981">
+                <LinearLayout style="@style/SignalContentStyle">
+                    <TextView style="@style/SignalTextStyle" android:text="Speed Up" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 4. HAZARD LEFT -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/SignalCardStyle"
+                app:cardBackgroundColor="#EF4444">
+                <LinearLayout style="@style/SignalContentStyle">
+                    <TextView style="@style/SignalTextStyle" android:text="Hazard Left" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 5. HAZARD RIGHT -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/SignalCardStyle"
+                app:cardBackgroundColor="#EF4444">
+                <LinearLayout style="@style/SignalContentStyle">
+                    <TextView style="@style/SignalTextStyle" android:text="Hazard Right" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 6. SINGLE FILE -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/SignalCardStyle"
+                app:cardBackgroundColor="#3B82F6">
+                <LinearLayout style="@style/SignalContentStyle">
+                    <TextView style="@style/SignalTextStyle" android:text="Single File" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 7. DOUBLE FILE -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/SignalCardStyle"
+                app:cardBackgroundColor="#3B82F6">
+                <LinearLayout style="@style/SignalContentStyle">
+                    <TextView style="@style/SignalTextStyle" android:text="Double File" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 8. YOU LEAD -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/SignalCardStyle"
+                app:cardBackgroundColor="#8B5CF6">
+                <LinearLayout style="@style/SignalContentStyle">
+                    <TextView style="@style/SignalTextStyle" android:text="You Lead" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </GridLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
