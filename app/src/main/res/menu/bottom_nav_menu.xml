@@ -17,7 +17,7 @@
         android:title="Groups" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_customize"
         android:icon="@drawable/ic_customize"
         android:title="Customize" />
 
