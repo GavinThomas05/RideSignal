@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.ridesignal.databinding.FragmentHomeBinding
+import com.example.ridesignal.R
+
+
 
 class HomeFragment : Fragment() {
 
@@ -31,8 +34,38 @@ class HomeFragment : Fragment() {
         return root
     }
 
+    // This is the function sets up the listeners for the buttons
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Handles the 3-dot Options Menu
+        binding.btnHomeOptions.setOnClickListener { btnView ->
+            showOptionsMenu(btnView)
+        }
+
+        //Add listeners for remaining buttons here
+    }
+
+    private fun showOptionsMenu(anchor: View) {
+        val popup = PopupMenu(requireContext(), anchor)
+        popup.menuInflater.inflate(R.menu.home_options_menu, popup.menu)
+
+        popup.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_sign_out -> {
+                    // Add your sign out logic here later
+                    true
+                }
+                else -> false
+            }
+        }
+        popup.show()
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+
