@@ -11,20 +11,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RideSignal">
+
+        <!-- The Login Screen (Starts first) -->
         <activity
-            android:name=".signalPad"
-            android:exported="false"
-            android:theme="@style/Theme.RideSignal" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- The Main App Screen -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <!-- The Signal Pad Screen -->
+        <activity
+            android:name=".signalPad"
+            android:exported="false"
+            android:theme="@style/Theme.RideSignal" />
+
     </application>
 
 </manifest>

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.ridesignal.databinding.FragmentHomeBinding
 import com.example.ridesignal.R
-
+//import com.google.firebase.auth.FirebaseAuth
 
 
 class HomeFragment : Fragment() {
@@ -52,8 +52,9 @@ class HomeFragment : Fragment() {
 
         popup.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
+                //sign out from firebase
                 R.id.action_sign_out -> {
-                    // Add your sign out logic here later
+                    // add sign out logic here
                     true
                 }
                 else -> false

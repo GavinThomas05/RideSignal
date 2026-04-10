@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "597283514901",
+    "project_id": "ridesignal-e2177",
+    "storage_bucket": "ridesignal-e2177.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597283514901:android:3f25890d008a112eac7c1c",
+        "android_client_info": {
+          "package_name": "com.example.ridesignal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmJzIz2N_M9AgzYFc6qn-Zs9LbtiF7UAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
