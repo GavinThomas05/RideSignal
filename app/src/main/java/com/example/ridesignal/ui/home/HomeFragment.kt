@@ -13,6 +13,9 @@ import com.example.ridesignal.LoginActivity
 import com.example.ridesignal.databinding.FragmentHomeBinding
 import com.example.ridesignal.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlin.io.path.exists
+
 
 
 class HomeFragment : Fragment() {
@@ -21,6 +24,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     // Initialize Firebase Auth
     private val auth = FirebaseAuth.getInstance()
+    private val db = FirebaseFirestore.getInstance()
+
 
 
     override fun onCreateView(
@@ -40,6 +45,9 @@ class HomeFragment : Fragment() {
     // This is the function sets up the listeners for the buttons
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        fetchUserData()
+
 
         // Handles opening the 3-dot Options Menu
         binding.btnHomeOptions.setOnClickListener { btnView ->
@@ -78,6 +86,36 @@ class HomeFragment : Fragment() {
         popup.show()
     }
 
+    private fun fetchUserData() {
+        val userId = auth.currentUser?.uid
+
+        if (userId != null) {
+            // Reference to the specific user's document
+            db.collection("users").document(userId)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.exists()) {
+                        // Get the firstName field we saved during registration
+                        val firstName = document.getString("firstName")
+                        val lastName = document.getString("lastName")
+                        val friendCode = document.getString("friendCode")
+
+
+
+                        // Update the UI
+                        if (!firstName.isNullOrEmpty()) {
+                            binding.tvUserGreeting.text = "Welcome $firstName $lastName ($friendCode)!"
+                        } else {
+                            binding.tvUserGreeting.text = "Welcome!"
+                        }
+                    }
+                }
+                .addOnFailureListener {
+                    // Fallback if network fails
+                    binding.tvUserGreeting.text = "Welcome!"
+                }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

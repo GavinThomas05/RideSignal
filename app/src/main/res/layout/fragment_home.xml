@@ -10,6 +10,18 @@
         android:layout_height="wrap_content"
         android:padding="24dp">
 
+        <!-- Greeting message-->
+        <TextView
+            android:id="@+id/tvUserGreeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome!"
+            android:textColor="#A0AEC0"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageButton
             android:id="@+id/btnHomeOptions"
             android:layout_width="wrap_content"

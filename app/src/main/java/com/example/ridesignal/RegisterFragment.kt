@@ -9,6 +9,8 @@ import com.example.ridesignal.MainActivity
 import com.example.ridesignal.databinding.FragmentRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.Random
+import kotlin.random.nextInt
 
 class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
@@ -30,12 +32,15 @@ class RegisterFragment : Fragment() {
 
         // Register Button Logic
         binding.btnRegister.setOnClickListener {
+            val firstName = binding.etFirstName.text.toString().trim()
+            val lastName = binding.etLastName.text.toString().trim()
             val email = binding.etRegEmail.text.toString().trim()
             val password = binding.etRegPassword.text.toString().trim()
             val confirmPassword = binding.etRegConfirmPassword.text.toString().trim()
+            val friendCode = generateFriendCode()
 
             // Basic Validation of fields
-            if (email.isEmpty() || password.isEmpty()) {
+            if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -52,7 +57,10 @@ class RegisterFragment : Fragment() {
                     // Save User Data to Firestore
                     val userMap = hashMapOf(
                         "uid" to userId,
+                        "firstName" to firstName,
+                        "lastName" to lastName,
                         "email" to email,
+                        "friendCode" to friendCode,
                         "createdAt" to System.currentTimeMillis()
                     )
 
@@ -72,9 +80,21 @@ class RegisterFragment : Fragment() {
                     Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_LONG).show()
                 }        }
 
+
         // Link to Login Fragment
         binding.tvBackToLogin.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+    }
+
+    private fun generateFriendCode(): String {
+        val chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        val sb = StringBuilder()
+        val random = Random()
+        while (sb.length < 6) {
+            val index = random.nextInt(chars.length)
+            sb.append(chars[index])
+        }
+        return sb.toString()
     }
 }
