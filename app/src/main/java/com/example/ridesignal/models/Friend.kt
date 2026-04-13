@@ -1,4 +1,7 @@
 package com.example.ridesignal.models
 
-class Friend {
-}
+data class Friend(
+    val uid: String = "",
+    val firstName: String = "",val lastName: String = "",
+    val friendCode: String = ""
+)

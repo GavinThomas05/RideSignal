@@ -140,60 +140,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardPendingRequest" />
 
-        <!-- Friend Item 1 -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardFriend1"
+        <TextView
+            android:id="@+id/tvNoFriends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="No friends yet"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMyFriendsLabel"/>
+
+        <!-- Friend cards -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFriendsList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:cardBackgroundColor="#1B2436"
-            app:cardCornerRadius="12dp"
-            app:strokeColor="#2D3748"
-            app:strokeWidth="1dp"
-            app:layout_constraintTop_toBottomOf="@id/tvMyFriendsLabel">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:padding="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/avatar1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/bg_icon_orange"
-                    android:gravity="center"
-                    android:text="M"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvName1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Mike Johnson"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/avatar1"
-                    app:layout_constraintTop_toTopOf="@id/avatar1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="mike@example.com"
-                    android:textColor="#718096"
-                    app:layout_constraintStart_toStartOf="@id/tvName1"
-                    app:layout_constraintTop_toBottomOf="@id/tvName1" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Repeat for Sarah or other friends as needed -->
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/tvMyFriendsLabel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
