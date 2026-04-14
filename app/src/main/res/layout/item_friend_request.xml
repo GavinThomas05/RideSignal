@@ -53,7 +53,29 @@
             app:layout_constraintStart_toStartOf="@id/tvFriendName"
             app:layout_constraintTop_toBottomOf="@id/tvFriendName" />
 
+        <!-- Accept and decline buttons-->
+        <ImageButton
+            android:id="@+id/btnDecline"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_button_white"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#000" />
 
+        <ImageButton
+            android:id="@+id/btnAccept"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_button_dark"
+            android:src="@drawable/ic_check"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnDecline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#FFF" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -37,7 +37,7 @@ class RegisterFragment : Fragment() {
             val email = binding.etRegEmail.text.toString().trim()
             val password = binding.etRegPassword.text.toString().trim()
             val confirmPassword = binding.etRegConfirmPassword.text.toString().trim()
-            val friendCode = generateFriendCode()
+            val friendCode = generateFriendCode().uppercase()
 
             // Basic Validation of fields
             if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
@@ -53,6 +53,7 @@ class RegisterFragment : Fragment() {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener { authResult ->
                     val userId = authResult.user?.uid
+
 
                     // Save User Data to Firestore
                     val userMap = hashMapOf(
