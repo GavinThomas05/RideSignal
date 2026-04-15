@@ -63,7 +63,6 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
                 return@setOnClickListener
             }
 
-
             val groupId = db.collection("groups").document().id
             val members = selectedUids + currentUserId // Admin is always a member
 
