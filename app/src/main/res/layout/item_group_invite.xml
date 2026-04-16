@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="#1B2436"
+    app:cardCornerRadius="12dp"
+    app:strokeColor="#2D3748"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Top Label -->
+        <TextView
+            android:id="@+id/tvInviteTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="New Group Invitation"
+            android:textColor="#718096"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/llActions"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Group Name -->
+        <TextView
+            android:id="@+id/tvGroupNameDisplay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Sunday Riders"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toStartOf="@+id/llActions"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvInviteTitle" />
+
+        <!-- Invited By Text -->
+        <TextView
+            android:id="@+id/tvInvitedByDisplay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Invited by: John Doe"
+            android:textColor="#A0AEC0"
+            android:textSize="13sp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toStartOf="@+id/llActions"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvGroupNameDisplay" />
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:id="@+id/llActions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnAcceptInvite"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Accept Invitation"
+                android:src="@drawable/ic_check"
+                app:tint="#48BB78" />
+
+            <ImageButton
+                android:id="@+id/btnDeclineInvite"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Decline Invitation"
+                android:src="@drawable/ic_close"
+                app:tint="#F56565" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

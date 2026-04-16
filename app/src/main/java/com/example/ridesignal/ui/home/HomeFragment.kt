@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.ridesignal.LoginActivity
 import com.example.ridesignal.databinding.FragmentHomeBinding
 import com.example.ridesignal.R
+import com.example.ridesignal.signalPad
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.io.path.exists
@@ -54,7 +55,14 @@ class HomeFragment : Fragment() {
             showOptionsMenu(btnView)
         }
 
+        // Handles starting the signal pad
+        binding.cardLaunch.setOnClickListener {
+            val intent = Intent(requireContext(), signalPad::class.java)
+            startActivity(intent)
+        }
+
         //ADD LISTENERS FOR HOME SCREEN BTNS HERE
+
     }
 
     //pop up menu logic
