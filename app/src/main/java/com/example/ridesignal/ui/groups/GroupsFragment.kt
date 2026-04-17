@@ -52,7 +52,7 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
         val currentUserId = auth.currentUser?.uid ?: return
         var selectedUids = listOf<String>()
 
-        // 1. Fetch friends to show in the list
+        // Fetch friends to show in the list
         db.collection("users").document(currentUserId).collection("friends").get()
             .addOnSuccessListener { snapshot ->
                 val friends = snapshot.toObjects(Friend::class.java)
@@ -63,7 +63,7 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
                 dialogBinding.rvInviteFriends.adapter = adapter
             }
 
-        // 2. Handle the "Create" button click
+        //  Handle the "Create" button click
         dialogBinding.btnConfirmCreate.setOnClickListener {
             val groupName = dialogBinding.etGroupName.text.toString().trim()
 
