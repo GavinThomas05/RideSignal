@@ -1,17 +1,13 @@
 package com.example.ridesignal
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.ridesignal.databinding.ActivitySignalPadBinding
 
 class signalPad : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivitySignalPadBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +16,28 @@ class signalPad : AppCompatActivity() {
         binding = ActivitySignalPadBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // When the 3-dot button is clicked
         binding.btnOptions.setOnClickListener {
-            // This is where you will trigger the "Leave Session" menu later
+            showMenu()
         }
+    }
+
+    // Pop up menu logic
+    private fun showMenu() {
+        val popup = PopupMenu(this, binding.btnOptions)
+
+        popup.menuInflater.inflate(R.menu.signal_pad_menu, popup.menu)
+
+        popup.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_exit -> {
+                    // Close the activity and go back to main
+                    finish()
+                    true
+                }
+                else -> false
+            }
+        }
+        popup.show()
     }
 }
