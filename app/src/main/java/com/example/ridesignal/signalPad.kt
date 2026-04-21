@@ -1,6 +1,7 @@
 package com.example.ridesignal
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +11,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ridesignal.adapters.FriendAdapter
+import com.example.ridesignal.adapters.SelectGroupAdapter
 import com.example.ridesignal.databinding.ActivitySignalPadBinding
 import com.example.ridesignal.databinding.DialogSelectGroupBinding
-import com.example.ridesignal.models.Group // <--- CORRECT IMPORT
+import com.example.ridesignal.models.Friend
+import com.example.ridesignal.models.Group
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -32,6 +36,7 @@ class signalPad : AppCompatActivity() {
         binding = ActivitySignalPadBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Show the selection dialog immediately on launch
         showGroupSelectionDialog()
 
         binding.btnOptions.setOnClickListener {
@@ -59,11 +64,13 @@ class signalPad : AppCompatActivity() {
 
         val currentUserId = auth.currentUser?.uid ?: return
 
+        dialogBinding.rvSelectGroup.layoutManager = LinearLayoutManager(this)
+
+
         db.collection("groups")
             .whereArrayContains("members", currentUserId)
             .get()
             .addOnSuccessListener { snapshot ->
-                // Ensure this uses your models.Group
                 val groups = snapshot.toObjects(Group::class.java)
 
                 if (groups.isEmpty()) {
@@ -72,14 +79,14 @@ class signalPad : AppCompatActivity() {
                     return@addOnSuccessListener
                 }
 
-                dialogBinding.rvSelectGroup.layoutManager = LinearLayoutManager(this)
-                dialogBinding.rvSelectGroup.adapter = SelectGroupAdapter(groups) { selectedGroup ->
-                    // FIX: matched variable name to currentGroupId
-                    currentGroupId = selectedGroup.groupId
-                    currentGroupName = selectedGroup.groupName
-                    binding.tvSignalTitle.text = "Signal Pad: $currentGroupName"
-                    dialog.dismiss()
-                }
+                // In signalPad.kt, update this line:
+                dialogBinding.rvSelectGroup.adapter =
+                    SelectGroupAdapter(groups, db) { selectedGroup ->
+                        currentGroupId = selectedGroup.groupId
+                        currentGroupName = selectedGroup.groupName
+                        binding.tvGroupSubtitle.text = "$currentGroupName"
+                        dialog.dismiss()
+                    }
             }
 
         dialogBinding.btnCancelSelect.setOnClickListener {
@@ -90,36 +97,5 @@ class signalPad : AppCompatActivity() {
         dialog.show()
     }
 
-    inner class SelectGroupAdapter(
-        private val list: List<Group>, // FIX: Use models.Group
-        private val onClick: (Group) -> Unit
-    ) : RecyclerView.Adapter<SelectGroupAdapter.VH>() {
 
-        // find IDs for UI components
-        inner class VH(view: View) : RecyclerView.ViewHolder(view) {
-            val name: TextView = view.findViewById(R.id.tvGroupName)
-            val memberCount: TextView = view.findViewById(R.id.tvMemberCount)
-            val btnSelectGroup: TextView = view.findViewById(R.id.btnSelectGroup)
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-            val v = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_select_group, parent, false)
-            return VH(v)
-        }
-
-        override fun onBindViewHolder(holder: VH, position: Int) {
-            val group = list[position]
-            val count = group.members.size
-            holder.name.text = group.groupName
-
-            //members count
-            holder.memberCount.text = "$count members"
-
-            // Button click listener for the select button
-            holder.btnSelectGroup.setOnClickListener { onClick(group) }
-        }
-
-        override fun getItemCount() = list.size
-    }
 }
