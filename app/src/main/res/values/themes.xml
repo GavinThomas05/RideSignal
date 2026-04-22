@@ -39,10 +39,10 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <!-- The Icon -->
+    <!-- The Icons for signal pad only -->
     <style name="SignalIconStyle">
-        <item name="android:layout_width">64dp</item>
-        <item name="android:layout_height">64dp</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
         <item name="android:tint">#FFFFFF</item>
     </style>
 
@@ -52,7 +52,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">22dp</item>
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 </resources>

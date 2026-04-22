@@ -63,73 +63,157 @@
 
             <!-- 1. STOP -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnStop"
                 style="@style/SignalCardStyle"
-                app:cardBackgroundColor="#EF4444">
+                app:cardBackgroundColor="#EF4444"
+                android:clickable="true">
                 <LinearLayout style="@style/SignalContentStyle">
+                    <ImageView
+                        style="@style/SignalIconStyle" android:src="@drawable/ic_stop"/>
                     <TextView style="@style/SignalTextStyle" android:text="Stop" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <!-- 2. SLOW DOWN -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnSlowDown"
                 style="@style/SignalCardStyle"
-                app:cardBackgroundColor="#F59E0B">
+                app:cardBackgroundColor="#F59E0B"
+                android:clickable="true"
+                android:focusable="true">
                 <LinearLayout style="@style/SignalContentStyle">
+                    <ImageView style="@style/SignalIconStyle" android:src="@drawable/ic_arrow_down"/>
                     <TextView style="@style/SignalTextStyle" android:text="Slow Down" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <!-- 3. SPEED UP -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnSpeedUp"
                 style="@style/SignalCardStyle"
-                app:cardBackgroundColor="#10B981">
+                app:cardBackgroundColor="#10B981"
+                android:clickable="true"
+                android:focusable="true" >
                 <LinearLayout style="@style/SignalContentStyle">
+                    <ImageView style="@style/SignalIconStyle" android:src="@drawable/ic_arrow_up"/>
                     <TextView style="@style/SignalTextStyle" android:text="Speed Up" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 4. HAZARD LEFT -->
+            <!-- 4. HAZARD ON ROAD -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnHazard"
                 style="@style/SignalCardStyle"
-                app:cardBackgroundColor="#EF4444">
+                app:cardBackgroundColor="#EF4444"
+                android:clickable="true"
+                android:focusable="true" >
                 <LinearLayout style="@style/SignalContentStyle">
-                    <TextView style="@style/SignalTextStyle" android:text="Hazard Left" />
+                    <ImageView style="@style/SignalIconStyle" android:src="@drawable/ic_hazard"/>
+                    <TextView style="@style/SignalTextStyle" android:text="Hazard On\n    Road" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 5. HAZARD RIGHT -->
+            <!-- 5. TURN LEFT -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnTurnLeft"
                 style="@style/SignalCardStyle"
-                app:cardBackgroundColor="#EF4444">
+                app:cardBackgroundColor="#F59E0B"
+                android:clickable="true"
+                android:focusable="true" >
                 <LinearLayout style="@style/SignalContentStyle">
-                    <TextView style="@style/SignalTextStyle" android:text="Hazard Right" />
+                    <ImageView style="@style/SignalIconStyle" android:src="@drawable/ic_turn_left"/>
+                    <TextView style="@style/SignalTextStyle" android:text="Turn Left" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 6. SINGLE FILE -->
+            <!-- 6. TURN RIGHT  -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnTurnRight"
                 style="@style/SignalCardStyle"
-                app:cardBackgroundColor="#3B82F6">
+                app:cardBackgroundColor="#F59E0B"
+                android:clickable="true"
+                android:focusable="true" >
                 <LinearLayout style="@style/SignalContentStyle">
-                    <TextView style="@style/SignalTextStyle" android:text="Single File" />
+                    <ImageView style="@style/SignalIconStyle" android:src="@drawable/ic_turn_right"/>
+                    <TextView style="@style/SignalTextStyle" android:text="Turn Right" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 7. DOUBLE FILE -->
+            <!-- 7. FUEL STOP -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnFuelStop"
                 style="@style/SignalCardStyle"
-                app:cardBackgroundColor="#3B82F6">
+                app:cardBackgroundColor="#3B82F6"
+                android:clickable="true"
+                android:focusable="true" >
                 <LinearLayout style="@style/SignalContentStyle">
-                    <TextView style="@style/SignalTextStyle" android:text="Double File" />
+                    <ImageView style="@style/SignalIconStyle" android:src="@drawable/ic_fuel_stop"/>
+                    <TextView style="@style/SignalTextStyle" android:text="Fuel Stop" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 8. YOU LEAD -->
+            <!-- 8. REFRESHMENT BREAK -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnRefresh"
                 style="@style/SignalCardStyle"
-                app:cardBackgroundColor="#8B5CF6">
+                app:cardBackgroundColor="#3B82F6"
+                android:clickable="true"
+                android:focusable="true" >
                 <LinearLayout style="@style/SignalContentStyle">
-                    <TextView style="@style/SignalTextStyle" android:text="You Lead" />
+                    <ImageView style="@style/SignalIconStyle" android:src="@drawable/ic_refresh"/>
+                    <TextView style="@style/SignalTextStyle" android:text="Refreshment\n      Break" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 9. POLICE AHEAD -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnPolice"
+                style="@style/SignalCardStyle"
+                app:cardBackgroundColor="#EF4444"
+                android:clickable="true"
+                android:focusable="true" >
+                <LinearLayout style="@style/SignalContentStyle">
+                    <ImageView style="@style/SignalIconStyle" android:src="@drawable/ic_police"/>
+                    <TextView style="@style/SignalTextStyle" android:text="Police Ahead" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 10. INDICATOR STILL ON -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnIndicator"
+                style="@style/SignalCardStyle"
+                app:cardBackgroundColor="#F59E0B"
+                android:clickable="true"
+                android:focusable="true" >
+                <LinearLayout style="@style/SignalContentStyle">
+                    <ImageView style="@style/SignalIconStyle" android:src="@drawable/ic_bulb"/>
+                    <TextView style="@style/SignalTextStyle" android:text="Indicator\n Still On" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 11. FOLLOW ME -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnFollowMe"
+                style="@style/SignalCardStyle"
+                app:cardBackgroundColor="#10B981"
+                android:clickable="true"
+                android:focusable="true" >
+                <LinearLayout style="@style/SignalContentStyle">
+                    <ImageView style="@style/SignalIconStyle" android:src="@drawable/ic_follow_me"/>
+                    <TextView style="@style/SignalTextStyle" android:text="Follow Me" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 12. SPLITTING OFF/ LEAVING GROUP -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnLeaveGroup"
+                style="@style/SignalCardStyle"
+                app:cardBackgroundColor="#8B5CF6"
+                android:clickable="true"
+                android:focusable="true" >
+                <LinearLayout style="@style/SignalContentStyle">
+                    <ImageView style="@style/SignalIconStyle" android:src="@drawable/ic_split"/>
+                    <TextView style="@style/SignalTextStyle" android:text="Leaving Group" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
