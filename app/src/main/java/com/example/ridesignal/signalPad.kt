@@ -169,6 +169,7 @@ class signalPad : AppCompatActivity() {
         }
     }
 
+    // Inflates the signal popup dialog and shows it with the given parameters
     private fun showSignalPopup(signalName: String, sender: String, colorHex: String, iconRes: Int) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_signal_popup, null)
 
@@ -208,6 +209,7 @@ class signalPad : AppCompatActivity() {
         }
     }
 
+    // Listen for change in lastSignal from the current group from firestore
     private fun startListeningForSignals() {
         val groupId = currentGroupId ?: return
         val currentUserId = auth.currentUser?.uid ?: ""
@@ -222,7 +224,7 @@ class signalPad : AppCompatActivity() {
                     val signal = snapshot.get("lastSignal", SignalMessage::class.java)
 
                     if (signal != null) {
-                        // Logic: Only show if signal is newer than when we opened the pad AND not from us
+                        // Only show if signal is newer than when we opened the pad AND not from us
                         if (signal.timestamp > lastProcessedTimestamp && signal.senderId != currentUserId) {
 
                             lastProcessedTimestamp = signal.timestamp // to prevent re-triggering
@@ -240,6 +242,7 @@ class signalPad : AppCompatActivity() {
             }
     }
 
+    // Send signal to group, updates lastSignal in current group in firestore
     private fun broadcastSignal(signalName: String, colorHex: String, iconName: String) {
         val groupId = currentGroupId ?: return
         val uid = auth.currentUser?.uid ?: return
@@ -264,13 +267,15 @@ class signalPad : AppCompatActivity() {
                 db.collection("groups").document(groupId)
                     .update("lastSignal", signal)
                     .addOnSuccessListener {
-                        Toast.makeText(this, "Signal sent: ${signalName.replace("\n", " ")}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Signal sent: ${signalName.replace("\n", " ")}"
+                            , Toast.LENGTH_SHORT).show()
                     }
                     .addOnFailureListener { Log.e("SignalPad", "Failed to send signal", it) }
             }
             .addOnFailureListener { Log.e("SignalPad", "Failed to fetch user data", it) }
     }
 
+    // Remove the listener when the activity is destroyed
     override fun onDestroy() {
         super.onDestroy()
         signalListener?.remove()
