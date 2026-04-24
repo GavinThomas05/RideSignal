@@ -226,6 +226,7 @@ class signalPad : AppCompatActivity() {
                     if (signal != null) {
                         // Only show if signal is newer than when we opened the pad AND not from us
                         if (signal.timestamp > lastProcessedTimestamp && signal.senderId != currentUserId) {
+                            Log.d("Performance Latency Test:", "RECEIVED at: ${System.currentTimeMillis()}")
 
                             lastProcessedTimestamp = signal.timestamp // to prevent re-triggering
 
@@ -246,6 +247,8 @@ class signalPad : AppCompatActivity() {
     private fun broadcastSignal(signalName: String, colorHex: String, iconName: String) {
         val groupId = currentGroupId ?: return
         val uid = auth.currentUser?.uid ?: return
+
+        Log.d("Performance Latency Test:", "SENT at: ${System.currentTimeMillis()}")
 
         // Fetch User details from Firestore 'users' collection
         db.collection("users").document(uid).get()

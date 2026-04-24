@@ -7,7 +7,7 @@ import com.example.ridesignal.databinding.ItemGroupInviteBinding
 import com.example.ridesignal.models.GroupInvitation
 
 class GroupInviteAdapter(
-    private val invites: List<GroupInvitation>, // Use GroupInvitation here
+    private val invites: List<GroupInvitation>,
     private val onAccept: (GroupInvitation) -> Unit,
     private val onDecline: (GroupInvitation) -> Unit
 ) : RecyclerView.Adapter<GroupInviteAdapter.InviteViewHolder>() {

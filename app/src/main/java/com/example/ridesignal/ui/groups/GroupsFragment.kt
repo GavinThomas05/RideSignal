@@ -86,16 +86,14 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
                     val groupId = db.collection("groups").document().id
                     val batch = db.batch()
 
-                    // 1. Create the main Group document
                     val newGroup = Group(
                         groupId = groupId,
                         groupName = groupName,
                         adminUid = currentUserId,
-                        members = listOf(currentUserId) // Only the creator starts in the group
+                        members = listOf(currentUserId)
                     )
                     batch.set(db.collection("groups").document(groupId), newGroup)
 
-                    // 2. Create invitations for every selected friend
                     selectedUids.forEach { friendUid ->
                         val inviteRef = db.collection("users").document(friendUid)
                             .collection("group_invitations").document(groupId)
@@ -110,7 +108,6 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
                         batch.set(inviteRef, invitation)
                     }
 
-                    // 3. Commit all changes at once
                     batch.commit()
                         .addOnSuccessListener {
                             dialog.dismiss()

@@ -22,11 +22,9 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
     private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
-    // 1. DATA LISTS
     private val friendsList = mutableListOf<Friend>()
     private val requestsList = mutableListOf<FriendRequest>()
 
-    // 2. ADAPTERS (Naming them specifically to avoid confusion)
     private lateinit var friendAdapter: FriendAdapter
     private lateinit var requestAdapter: FriendRequestAdapter
 
@@ -41,7 +39,6 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
         fetchFriends()
         fetchRequests()
 
-        // 3. Logic for the new "Confirm Add" button in the header
         binding.btnConfirmAdd.setOnClickListener {
             val code = binding.etFriendCode.text.toString().trim().uppercase()
             if (code.length == 6) {
@@ -71,7 +68,6 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
     private fun sendFriendRequest(code: String) {
         val currentUserId = auth.currentUser?.uid ?: return
 
-        // 1. Find user with this code
         db.collection("users").whereEqualTo("friendCode", code).get()
             .addOnSuccessListener { documents ->
                 if (documents.isEmpty) {
@@ -87,7 +83,6 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
                     return@addOnSuccessListener
                 }
 
-                // 2. Get current user's info to send
                 db.collection("users").document(currentUserId).get().addOnSuccessListener { myDoc ->
                     val request = FriendRequest(
                         fromUid = currentUserId,
@@ -95,7 +90,6 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
                         fromFriendCode = myDoc.getString("friendCode") ?: ""
                     )
 
-                    // 3. Add to target user's "requests" sub-collection
                     db.collection("users").document(targetUid)
                         .collection("requests").document(currentUserId).set(request)
                         .addOnSuccessListener {
@@ -146,7 +140,6 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
     private fun acceptFriendRequest(request: FriendRequest) {
         val myUid = auth.currentUser?.uid ?: return
 
-        // 1. Data for both users
         val friendForMe = Friend(uid = request.fromUid, firstName = request.fromName, friendCode = request.fromFriendCode)
 
         db.collection("users").document(myUid).get().addOnSuccessListener { myDoc ->

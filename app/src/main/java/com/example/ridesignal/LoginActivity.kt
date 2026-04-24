@@ -14,8 +14,8 @@ class LoginActivity : AppCompatActivity() {
         if (currentUser != null) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish() // Close LoginActivity
-            return // Exit onCreate early
+            finish()
+            return
         }
 
         // If not logged in, show the login layout

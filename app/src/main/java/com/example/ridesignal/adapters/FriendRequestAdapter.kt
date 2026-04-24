@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ridesignal.databinding.ItemFriendRequestBinding
 import com.example.ridesignal.models.FriendRequest
 
-// Renamed to FriendRequestAdapter to match your FriendsFragment logic
 class FriendRequestAdapter(
     private val requests: List<FriendRequest>,
     private val onAccept: (FriendRequest) -> Unit,
@@ -29,7 +28,6 @@ class FriendRequestAdapter(
     override fun onBindViewHolder(holder: RequestViewHolder, position: Int) {
         val request = requests[position]
 
-        // Ensure these IDs match your item_friend_request.xml
         holder.binding.tvFriendName.text = request.fromName
 
         holder.binding.btnAccept.setOnClickListener {
